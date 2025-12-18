@@ -59,8 +59,8 @@ public class Cuenta {
     }
 
     public void ingreso(double dineroAIngresar) throws CuentaException {
-        if (dineroAIngresar < 0) {
-            throw new CuentaException("El saldo no puede ser negativo");
+        if (dineroAIngresar <= 0) {
+            throw new CuentaException("El saldo introducido no puede ser 0 o menor");
         }
         saldo += dineroAIngresar;
         numeroIngresos++;

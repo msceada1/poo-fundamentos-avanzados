@@ -49,4 +49,12 @@ public class CuentaCredito extends Cuenta {
         } else super.reintegro(dineroASacar);
 
     }
+
+    @Override
+    public void ingreso(double dineroAIngresar) throws CuentaException {
+        if (dineroAIngresar + getCredito() > 300) {
+            throw new CuentaException("ERROR: el credito no puede ser superior a 300");
+        }
+        super.ingreso(dineroAIngresar);
+    }
 }
