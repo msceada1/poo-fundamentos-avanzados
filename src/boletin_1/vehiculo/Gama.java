@@ -2,15 +2,15 @@ package boletin_1.vehiculo;
 
 public enum Gama {
 
-    GAMABAJA(30), GAMAMEDIA(40), GAMAALTA(50);
+    BAJA(30), MEDIA(40), ALTA(50);
 
-    private final double precioBase;
+    final int precioAlquiler;
 
-    Gama(double precioBase) {
-        this.precioBase = precioBase;
+    Gama(int precioAlquiler) {
+        this.precioAlquiler = precioAlquiler;
     }
 
-    public double getPrecioBase() {
-        return precioBase;
+    public int getPrecioAlquiler() {
+        return precioAlquiler;
     }
 }

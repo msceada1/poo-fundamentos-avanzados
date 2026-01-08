@@ -2,15 +2,15 @@ package boletin_1.vehiculo;
 
 public enum Combustible {
 
-    DIESEL(3.5), GASOLINA(2);
+    GASOLINA(3.5), DIESEL(2);
 
-    private final double precioaniadido;
+    final double precioCombustible;
 
-    Combustible(double precioaniadido) {
-        this.precioaniadido = precioaniadido;
+    Combustible(double precioCombustible) {
+        this.precioCombustible = precioCombustible;
     }
 
-    public double getPrecioaniadido() {
-        return precioaniadido;
+    public double getPrecioCombustible() {
+        return precioCombustible;
     }
 }
