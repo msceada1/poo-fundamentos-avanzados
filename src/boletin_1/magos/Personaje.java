@@ -10,12 +10,19 @@ public abstract class Personaje {
     private int puntosDeVidaActuales;
 
     public Personaje(String nombre, Raza raza, int fuerza, int inteligencia, int puntosDeVidaMax) throws PersonajeException {
-        this.nombre = nombre;
+        setNombre(nombre);
         setRaza(raza);
         setFuerza(fuerza);
         setInteligencia(inteligencia);
         setPuntosDeVidaMax(puntosDeVidaMax);
         setPuntosDeVidaActuales(puntosDeVidaMax);
+    }
+
+    public void setNombre(String nombre) throws PersonajeException {
+        if (nombre == null || nombre.isBlank()) {
+            throw new PersonajeException("ERROR: El personaje debe tener nombre");
+        }
+        this.nombre = nombre;
     }
 
     public void setFuerza(int fuerza) throws PersonajeException {
@@ -27,7 +34,7 @@ public abstract class Personaje {
 
     public void setInteligencia(int inteligencia) throws PersonajeException {
         if (inteligencia < 0 || inteligencia > 20) {
-            throw new PersonajeException("ERROR: La fuerza debe estar entre 0 y 20");
+            throw new PersonajeException("ERROR: La inteligencia debe estar entre 0 y 20");
         }
         this.inteligencia = inteligencia;
     }

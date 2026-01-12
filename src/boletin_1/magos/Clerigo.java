@@ -41,5 +41,10 @@ public class Clerigo extends Personaje {
         personaje.setPuntosDeVidaActuales(personaje.getPuntosDeVidaActuales() + CAPACIDAD_DE_CURACION);
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() + "Clerigo{" +
+                "dios='" + dios + '\'' +
+                '}';
+    }
 }

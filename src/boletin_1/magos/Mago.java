@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Mago extends Personaje {
 
-    private static final int PUNTOS_DE_VIDA_A_QUITAR = -10;
+    private static final int PUNTOS_DE_VIDA_A_QUITAR = 10;
     private String[] hechizos;
 
     public Mago(String nombre, Raza raza, int fuerza, int inteligencia, int puntosDeVidaMax) throws PersonajeException {
@@ -29,10 +29,22 @@ public class Mago extends Personaje {
     }
 
     public String[] getHechizos() {
-        return new String[]{Arrays.toString(hechizos)};
+        return hechizos;
     }
 
     public void aprendeHechizo(String hechizo) throws PersonajeException {
+        if (hechizo == null || hechizo.isBlank()) {
+            throw new PersonajeException("ERROR: El hechizo debe tener nombre");
+        }
+
+        for (int i = 0; i < hechizos.length; i++) {
+            if (hechizos[i] != null) {
+                if (hechizos[i].equalsIgnoreCase(hechizo)) {
+                    throw new PersonajeException("ERROR: El mago no puede aprender un hechizo que ya tenía");
+                }
+            }
+        }
+
         for (int i = 0; i < hechizos.length; i++) {
             if (hechizos[i] == null) {
                 hechizos[i] = hechizo;
@@ -49,7 +61,7 @@ public class Mago extends Personaje {
 
     private void borrarHechizo(String hechizo) throws PersonajeException {
         for (int i = 0; i < hechizos.length; i++) {
-            if (hechizos[i].equalsIgnoreCase(hechizo)) {
+            if (hechizos[i] != null && hechizos[i].equalsIgnoreCase(hechizo)) {
                 hechizos[i] = null;
                 return;
             }
@@ -59,7 +71,7 @@ public class Mago extends Personaje {
 
     @Override
     public String toString() {
-        return super.toString() + "\nMago{" +
+        return super.toString() + "Mago{" +
                 "hechizos=" + Arrays.toString(hechizos) +
                 '}';
     }
