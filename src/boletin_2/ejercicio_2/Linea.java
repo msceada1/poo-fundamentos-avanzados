@@ -4,6 +4,6 @@ public class Linea extends Forma {
 
     @Override
     public double calcularArea() {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 }
