@@ -1,13 +1,12 @@
 package examen_2024;
 
-import utils.MiEntradaSalida;
-
 public class PokemonAgua extends Pokemon {
 
     public static final int MIN_RECUPERACION = 1;
     public static final int MAX_RECUPERACION = 2;
 
     private int puntosHidratacion;
+    private double precisionPorLluvia;
 
 
     public PokemonAgua(String nombre, int ptsSalud, int nivelAtaque, int nivelDefensa, int ptsHidratacion) throws PokemonException {
@@ -16,12 +15,12 @@ public class PokemonAgua extends Pokemon {
     }
 
     public void setPtsHidratacion(int ptsHidratacion) {
-        this.ptsHidratacion = ptsHidratacion;
+        this.puntosHidratacion = ptsHidratacion;
     }
 
-    public void precisionPorLluvia() {
+    public void setPrecisionPorLluvia() {
         if (WeatherCondition.LLUVIA) {
-            super.setNivelAtauqe(super.getNivelAtauqe() += MiEntradaSalida.generaAleatorioEntre(MIN_RECUPERACION, MAX_RECUPERACION, false));
+            this.precisionPorLluvia = super.getNivelAtaque() * Math.random() * 2;
         }
     }
 }

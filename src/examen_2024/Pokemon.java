@@ -11,13 +11,13 @@ public abstract class Pokemon {
 
     private String nombre;
     private double puntosDeSalud;
-    private double nivelAtauqe;
+    private double nivelAtaque;
     private double nivelDefensa;
 
     public Pokemon(String nombre, int puntosDeSalud, int nivelAtaque, int nivelDefensa) throws PokemonException {
         setNombre(nombre);
         setPuntosDeSalud(puntosDeSalud);
-        setNivelAtauqe(nivelAtaque);
+        setNivelAtaque(nivelAtaque);
         setNivelDefensa(nivelDefensa);
     }
 
@@ -37,16 +37,16 @@ public abstract class Pokemon {
         this.puntosDeSalud = puntosDeSalud;
     }
 
-    public void setNivelAtauqe(int nivelAtauqe) throws PokemonException {
-        if (nivelAtauqe < MIN_NIVEL_ATAQUE || nivelAtauqe > MAX_NIVEL_ATAQUE) {
+    public void setNivelAtaque(int nivelAtaque) throws PokemonException {
+        if (nivelAtaque < MIN_NIVEL_ATAQUE || nivelAtaque > MAX_NIVEL_ATAQUE) {
             throw new PokemonException("ERROR: el nivel de ataque debe estar entre 5 y 15");
         }
 
-        this.nivelAtauqe = nivelAtauqe;
+        this.nivelAtaque = nivelAtaque;
     }
 
     public void setNivelDefensa(int nivelDefensa) throws PokemonException {
-        if (nivelDefensa < MIN_NIVEL_DEFENSA || nivelAtauqe > MAX_NIVEL_DEFENSA) {
+        if (nivelDefensa < MIN_NIVEL_DEFENSA || nivelAtaque > MAX_NIVEL_DEFENSA) {
             throw new PokemonException("ERROR: el nivel de defensa debe estar entre 5 y 25");
         }
 
@@ -61,8 +61,8 @@ public abstract class Pokemon {
         return puntosDeSalud;
     }
 
-    public double getNivelAtauqe() {
-        return nivelAtauqe;
+    public double getNivelAtaque() {
+        return nivelAtaque;
     }
 
     public double getNivelDefensa() {
@@ -74,7 +74,7 @@ public abstract class Pokemon {
         return "Pokemon{" +
                 "nombre='" + nombre + '\'' +
                 ", ptsSalud=" + puntosDeSalud +
-                ", nivelAtauqe=" + nivelAtauqe +
+                ", nivelAtauqe=" + nivelAtaque +
                 ", nivelDefensa=" + nivelDefensa +
                 '}';
     }
