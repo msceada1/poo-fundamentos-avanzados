@@ -18,9 +18,9 @@ public class PokemonAgua extends Pokemon {
         this.puntosHidratacion = ptsHidratacion;
     }
 
-    public void setPrecisionPorLluvia() {
-        if (WeatherCondition.LLUVIA) {
-            this.precisionPorLluvia = super.getNivelAtaque() * Math.random() * 2;
-        }
+    public void setPrecisionPorLluvia(double p) {
+        this.precisionPorLluvia = p;
     }
+
+
 }
