@@ -35,4 +35,14 @@ public class FiguraMadera extends JugueteDeMadera implements Apilable {
 
         this.numLados = numLados;
     }
+
+    @Override
+    public String toString() {
+        return "FiguraMadera{" +
+                "color='" + color + '\'' +
+                ", numLados=" + numLados +
+                ", nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                '}';
+    }
 }

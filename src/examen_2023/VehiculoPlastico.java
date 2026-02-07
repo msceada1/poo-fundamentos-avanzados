@@ -21,4 +21,13 @@ public class VehiculoPlastico extends JugueteDePlastico {
         }
         this.numRuedas = numRuedas;
     }
+
+    @Override
+    public String toString() {
+        return "VehiculoPlastico{" +
+                "numRuedas=" + numRuedas +
+                ", nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                '}';
+    }
 }

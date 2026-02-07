@@ -21,4 +21,13 @@ public class InstrumentoMusical extends JugueteDeMadera {
         }
         this.edadMinima = edadMinima;
     }
+
+    @Override
+    public String toString() {
+        return "InstrumentoMusical{" +
+                "edadMinima=" + edadMinima +
+                ", nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                '}';
+    }
 }

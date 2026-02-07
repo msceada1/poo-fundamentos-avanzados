@@ -9,7 +9,7 @@ public class Principal {
 
     public static final int MAX_JUGUETES = 10;
     public static Juguete[] juguetes = new Juguete[MAX_JUGUETES];
-    public static int numJuguetes = 0;
+    public static int numJuguetes = conteoJuguetesCreados();
 
     public static void main(String[] args) {
 
@@ -29,13 +29,17 @@ public class Principal {
         VehiculoPlastico j5 = new VehiculoPlastico("Camión Pegaso", "Juguematic", 8);
         PiezaLego j6 = new PiezaLego("Bloque de lego", "Lego", 4, "Azul");
         PiezaLego j7 = new PiezaLego("Bloque de lego", "Lego", 2, "Verde");
-        addJuguete(j1);
-        addJuguete(j2);
-        addJuguete(j3);
-        addJuguete(j4);
-        addJuguete(j5);
-        addJuguete(j6);
-        addJuguete(j7);
+        try {
+            addJuguete(j1);
+            addJuguete(j2);
+            addJuguete(j3);
+            addJuguete(j4);
+            addJuguete(j5);
+            addJuguete(j6);
+            addJuguete(j7);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
         do {
@@ -51,6 +55,14 @@ public class Principal {
                     int numLados = UserDataCollector.getEntero("Introduce el número de lados de la figura");
                     String color = UserDataCollector.getString("Introduce el color de la figura");
 
+                    FiguraMadera f = new FiguraMadera(nombre, marca, origen, anoTala, color, numLados);
+
+                    try {
+                        addJuguete(f);
+                    } catch (ExamenException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     //TODO: Completar
 
                     break;
@@ -62,6 +74,13 @@ public class Principal {
                     int anoTala_c2 = UserDataCollector.getEntero("Introduce el año de tala de la madera");
                     int edadMin_c2 = UserDataCollector.getEntero("Introduce la edad mínima");
 
+                    try {
+                        InstrumentoMusical i = new InstrumentoMusical(nombre_c2, marca_c2, origen_c2, anoTala_c2, edadMin_c2);
+                        addJuguete(i);
+                    } catch (ExamenException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     //TODO: Completar
 
                     break;
@@ -70,6 +89,14 @@ public class Principal {
                     String nombre_c3 = UserDataCollector.getString("Introduce el nombre");
                     String marca_c3 = UserDataCollector.getString("Introduce la marca");
                     int numRuedas_c3 = UserDataCollector.getEntero("Introduce el número de ruedas");
+
+                    VehiculoPlastico v = new VehiculoPlastico(nombre_c3, marca_c3, numRuedas_c3);
+
+                    try {
+                        addJuguete(v);
+                    } catch (ExamenException e) {
+                        System.out.println(e.getMessage());
+                    }
 
                     //TODO: Completar
 
@@ -81,6 +108,14 @@ public class Principal {
                     String color_c4 = UserDataCollector.getString("Introduce el color");
                     int unidades_c4 = UserDataCollector.getEntero("Introduce la medida, en unidades");
 
+                    PiezaLego p = new PiezaLego(nombre_c4, marca_c4, unidades_c4, color_c4);
+
+                    try {
+                        addJuguete(p);
+                    } catch (ExamenException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     //TODO: Completar
 
                     break;
@@ -90,6 +125,14 @@ public class Principal {
                     int opcion1_c5 = UserDataCollector.getEnteroMinMax("Selecciona un juguete", 1, numJuguetes);
                     Juguete j1_c5 = juguetes[opcion1_c5 - 1];
 
+                    if (!(j1_c5 instanceof Apilable)) {
+                        try {
+                            throw new ExamenException("error el juguete seleccionado no es apilable");
+                        } catch (ExamenException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
                     //TODO: hacer comprobaciones y actuar según el enunciado
 
                     System.out.println("Selecciona ahora el juguete que quieres apilar");
@@ -97,12 +140,23 @@ public class Principal {
                     int opcion2_c5 = UserDataCollector.getEnteroMinMax("Selecciona un juguete", 1, numJuguetes);
                     Juguete j2_c5 = juguetes[opcion2_c5 - 1];
 
+                    if (!(j2_c5 instanceof Apilable) || j1_c5.getClass() != j2_c5.getClass() || j2_c5.getNombre().equalsIgnoreCase(j1_c5.getNombre())) {
+                        try {
+                            throw new ExamenException("error los juguetes no se pueden apilar");
+                        } catch (ExamenException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+
+                    System.out.println("Juguetes apilados correctamente");
+
                     //TODO: hacer el resto
 
                     break;
 
                 case 6:
                     // Mostrar todos los juguetes
+                    mostrarJuguetes();
                     break;
 
                 case 7:
@@ -127,5 +181,33 @@ public class Principal {
         return sb.toString();
     }
 
+    private static void addJuguete(Juguete juguete) throws ExamenException {
+        for (int i = 0; i < juguetes.length; i++) {
+            if (juguetes[i] == null) {
+                juguetes[i] = juguete;
+                return;
+            }
+        }
+        throw new ExamenException("ERROR: no se pueden añadir mas juguetes a la lista");
+    }
 
+    private static void mostrarJuguetes() {
+        int contador = 1;
+
+        for (int i = 0; i < juguetes.length; i++) {
+            if (juguetes[i] != null) {
+                System.out.println(contador++ + " " + juguetes[i]);
+            }
+        }
+    }
+
+    private static int conteoJuguetesCreados() {
+        int contador = 0;
+        for (int i = 0; i < juguetes.length; i++) {
+            if (juguetes[i] != null) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 }

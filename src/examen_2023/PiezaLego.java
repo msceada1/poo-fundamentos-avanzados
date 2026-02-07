@@ -34,4 +34,14 @@ public class PiezaLego extends JugueteDePlastico implements Apilable {
 
         this.longitud = longitud;
     }
+
+    @Override
+    public String toString() {
+        return "PiezaLego{" +
+                "longitud=" + longitud +
+                ", color='" + color + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", marca='" + marca + '\'' +
+                '}';
+    }
 }
